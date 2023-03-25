@@ -10,10 +10,16 @@
 
 class Kohana_Stripe {
 
+	/** @var string|null $status */
 	public static $status = NULL;
+	/** @var string|null $secret_key */
 	private static $secret_key = NULL;
+	/** @var string|null $publishable_key */
 	public static $publishable_key = NULL;
 
+	/**
+	 * @return void
++   */
 	public static function init()
 	{
 		if (self::$secret_key != null && self::$publishable_key != null) {
