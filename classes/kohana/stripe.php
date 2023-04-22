@@ -29,10 +29,11 @@ class Kohana_Stripe {
 		require_once Kohana::find_file('vendor', 'stripe-php/init' , 'php');
 
 		$config = Kohana::config('stripe');
-		self::$status = strval($config['status']);
+		if (is_scalar($config['status']))
+			self::$status = (string) $config['status'];
 		if (is_array($config[self::$status])) {
-			self::$secret_key = strval($config[self::$status]['secret_key']);
-			self::$publishable_key = strval($config[self::$status]['publishable_key']);
+			self::$secret_key = (string) $config[self::$status]['secret_key'];
+			self::$publishable_key = (string) $config[self::$status]['publishable_key'];
 			Stripe\Stripe::setApiKey(self::$secret_key);
 		}
 	}
